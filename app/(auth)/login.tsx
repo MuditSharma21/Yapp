@@ -47,7 +47,7 @@ export default function Auth() {
           autoCapitalize={'none'}
           inputContainerStyle={styles.input}
           labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'gray' }}
+          inputStyle={{ color: 'black' }}
         />
       </View>
       <View style={styles.verticallySpaced}>
@@ -61,7 +61,7 @@ export default function Auth() {
           autoCapitalize={'none'}
           inputContainerStyle={styles.input}
           labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'gray' }}
+          inputStyle={{ color: 'black' }}
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 100,
-    backgroundColor: '#b4a39b',
+    backgroundColor: '#2379b3',
     color: 'white',
     padding: 14
   },
@@ -98,9 +98,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 4,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderColor: '#b4a39b',
+    borderColor: '#2379b3',
     borderRadius: 100,
     padding: 10,
-    marginTop: 5
+    marginTop: 5,
+    backgroundColor: 'lightgray'
   }
 })

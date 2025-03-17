@@ -4,10 +4,9 @@ import { StyleSheet, View, Alert, ScrollView } from 'react-native'
 import { Button, Input } from '@rneui/themed'
 import { useAuth } from '@/providers/AuthProvider'
 import Avatar from '@/components/Avatar'
-import { color } from '@rneui/themed/dist/config'
 
 export default function ProfileScreen() {
-    const { session } = useAuth()
+    const { session  } = useAuth()
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
   const [fullname, setFullname] = useState('')
@@ -100,19 +99,19 @@ export default function ProfileScreen() {
         </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input label="Email" value={session?.user?.email} disabled inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'gray' }}/>
+          inputStyle={{ color: 'black' }}/>
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Fullname" value={fullname || ''} onChangeText={(text) => setFullname(text)} inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'gray' }}/>
+          inputStyle={{ color: 'black' }}/>
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Username" value={username || ''} onChangeText={(text) => setUsername(text)} inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'gray' }}/>
+          inputStyle={{ color: 'black' }}/>
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Website" value={website || ''} onChangeText={(text) => setWebsite(text)} inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'gray' }}/>
+          inputStyle={{ color: 'black' }}/>
       </View>
 
       <View style={[styles.verticallySpaced, styles.mt20]}>
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 100,
-    backgroundColor: '#b4a39b',
+    backgroundColor: '#2379b3',
     color: 'white',
     padding: 14
   },
@@ -156,9 +155,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 4,
     borderLeftWidth: 1,
     borderRightWidth: 1,
-    borderColor: '#b4a39b',
+    borderColor: '#2379b3',
     borderRadius: 100,
     padding: 10,
-    marginTop: 5
+    marginTop: 5,
+    backgroundColor: 'lightgray'
   }
 })

@@ -1,8 +1,6 @@
-import { ThemedView } from "@/components/ThemedView";
 import { useAuth } from "@/providers/AuthProvider";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Link, Redirect, router, Stack } from "expo-router";
-import { ScrollView } from "react-native";
+import { Link, router, Stack } from "expo-router";
 import { ChannelList } from "stream-chat-expo";
 
 export default function MainTabScreen() {    
@@ -14,7 +12,7 @@ export default function MainTabScreen() {
             <Link href={'/(home)/users'} asChild>
                 <FontAwesome5 name='users' size={24} color='gray' style={{ marginHorizontal: 15 }} />
             </Link>
-        ) }}/>
+        ),  }}/>
                 <ChannelList 
                     onSelect={(channel) => router.push(`/channel/${channel.cid}`)}
                     filters={{ members: {$in: [profile.id]} }}

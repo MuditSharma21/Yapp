@@ -1,7 +1,6 @@
 import { useAuth } from "@/providers/AuthProvider";
 import ChatProvider from "@/providers/ChatProvider";
 import { Redirect, Stack } from "expo-router";
-import { Chat, OverlayProvider } from "stream-chat-expo";
 
 export default function HomeLayout () {
     const { user } = useAuth()
@@ -14,6 +13,8 @@ export default function HomeLayout () {
         <ChatProvider>
             <Stack>
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
+                <Stack.Screen name="users" options={{ headerTitle: 'Users' }}/>
+                <Stack.Screen name="channel" options={{ headerTitle: '' }}/>
             </Stack>
         </ChatProvider>
     )
