@@ -10,7 +10,6 @@ export default function ProfileScreen() {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
   const [fullname, setFullname] = useState('')
-  const [website, setWebsite] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
 
   useEffect(() => {
@@ -24,7 +23,7 @@ export default function ProfileScreen() {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url, full_name`)
+        .select(`username, avatar_url, full_name`)
         .eq('id', session?.user.id)
         .single()
       if (error && status !== 406) {
@@ -33,7 +32,6 @@ export default function ProfileScreen() {
 
       if (data) {
         setUsername(data.username)
-        setWebsite(data.website)
         setAvatarUrl(data.avatar_url)
         setFullname(data.full_name)
       }
@@ -48,12 +46,10 @@ export default function ProfileScreen() {
 
   async function updateProfile({
     username,
-    website,
     avatar_url,
     full_name
   }: {
     username: string
-    website: string
     avatar_url: string
     full_name: string
   }) {
@@ -64,7 +60,6 @@ export default function ProfileScreen() {
       const updates = {
         id: session?.user.id,
         username,
-        website,
         avatar_url,
         full_name,
         updated_at: new Date(),
@@ -93,38 +88,35 @@ export default function ProfileScreen() {
                 url={avatarUrl}
                 onUpload={(url: string) => {
                 setAvatarUrl(url)
-                updateProfile({ username, website, avatar_url: url, full_name: fullname })
+                updateProfile({ username, avatar_url: url, full_name: fullname })
                 }}
             />
         </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Input label="Email" value={session?.user?.email} disabled inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'black' }}/>
+          inputStyle={{ color: 'black' }} />
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Fullname" value={fullname || ''} onChangeText={(text) => setFullname(text)} inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'black' }}/>
+          inputStyle={{ color: 'black' }} />
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Username" value={username || ''} onChangeText={(text) => setUsername(text)} inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'black' }}/>
-      </View>
-      <View style={styles.verticallySpaced}>
-        <Input label="Website" value={website || ''} onChangeText={(text) => setWebsite(text)} inputContainerStyle={styles.input} labelStyle={{marginLeft: 10}}
-          inputStyle={{ color: 'black' }}/>
+          inputStyle={{ color: 'black' }} />
       </View>
 
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
           title={loading ? 'Loading ...' : 'Update'}
-          onPress={() => updateProfile({ username, website, avatar_url: avatarUrl, full_name: fullname })}
+          onPress={() => updateProfile({ username, avatar_url: avatarUrl, full_name: fullname })}
           loading={loading}
           buttonStyle={styles.button} 
+          titleStyle={{ fontFamily: 'SpaceMono' }}
         />
       </View>
 
       <View style={styles.verticallySpaced}>
-        <Button title="Sign Out" onPress={() => supabase.auth.signOut()} buttonStyle={styles.button} />
+        <Button title="Sign Out" onPress={() => supabase.auth.signOut()} buttonStyle={styles.button} titleStyle={{ fontFamily: 'SpaceMono' }}/>
       </View>
     </ScrollView>
     </View>
@@ -159,6 +151,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     padding: 10,
     marginTop: 5,
-    backgroundColor: 'lightgray'
+    backgroundColor: 'lightgray',
+    fontFamily: 'SpaceMono'
   }
 })

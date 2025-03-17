@@ -8,18 +8,21 @@ export default function MainTabScreen() {
     
     return (
         <>
-        <Stack.Screen options={{ headerRight: () => (
-            <Link href={'/(home)/users'} asChild>
-                <FontAwesome5 name='users' size={24} color='gray' style={{ marginHorizontal: 15 }} />
-            </Link>
-        ),  }}/>
-                <ChannelList 
-                    onSelect={(channel) => router.push(`/channel/${channel.cid}`)}
-                    filters={{ members: {$in: [profile.id]} }}
-                    additionalFlatListProps={{
-                        style: {borderRadius: 20}
-                    }}
-                />
+            <Stack.Screen options={{ headerRight: () => (
+                <Link href={'/(home)/users'} asChild>
+                    <FontAwesome5 name='users' size={24} color='gray' style={{ marginHorizontal: 15 }} />
+                </Link>
+            ),
+            headerTitleStyle: { fontFamily: 'SpaceMono' }  
+            }}/>
+            
+            <ChannelList 
+                onSelect={(channel) => router.push(`/channel/${channel.cid}`)}
+                filters={{ members: {$in: [profile.id]} }}
+                additionalFlatListProps={{
+                    style: {borderRadius: 20}
+                }}
+            />
         </>
     )
 }
